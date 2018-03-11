@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "217428108679",
+    "firebase_url": "https://huehnerstall-9c987.firebaseio.com",
+    "project_id": "huehnerstall-9c987",
+    "storage_bucket": "huehnerstall-9c987.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217428108679:android:5ee94be9ae4c8899",
+        "android_client_info": {
+          "package_name": "de.repictures.huehnerstall"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217428108679-ri0muug6v9dv38iskcht7gelhngnv5uf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "de.repictures.huehnerstall",
+            "certificate_hash": "bde0b07596ee213e395aae56ee6fa1ba70f4248b"
+          }
+        },
+        {
+          "client_id": "217428108679-4krfd37mfsj4vtb7bvoeeqv04o821l71.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcCckdpJClMcN1uz7vqaqBNm4NcNVTyz8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217428108679-4krfd37mfsj4vtb7bvoeeqv04o821l71.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
