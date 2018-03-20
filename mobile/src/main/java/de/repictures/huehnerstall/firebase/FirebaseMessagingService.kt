@@ -16,7 +16,7 @@ open class FirebaseMessagingService : FirebaseMessagingService() {
         }
 
         if (remoteMessage.notification != null) {
-            Log.d(TAG, "Message Notification Body: " + remoteMessage.notification.body!!)
+            Log.d(TAG, "Message Notification Body: " + remoteMessage.notification!!.body!!)
         }
     }
 }
