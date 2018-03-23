@@ -2,4 +2,12 @@
 <resources>
     <string name="app_name">Hühnerstall</string>
     <string name="chicken_flap">Hühnerklappe</string>
+    <string name="opening_time">Öffnungszeit</string>
+    <string name="closing_time">Schließzeit</string>
+    <string name="opened">Geöffnet</string>
+    <string name="opening">Öffnet…</string>
+    <string name="closed">Geschlossen</string>
+    <string name="closing">Schließt…</string>
+    <string name="error">Fehler</string>
+    <string name="status">Status</string>
 </resources>

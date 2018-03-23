@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Hühnerstall</string>
     <string name="chicken_flap">Chicken Flap</string>
+    <string name="opening_time">Opening time</string>
+    <string name="closing_time">Closing time</string>
+    <string name="error">Error</string>
+    <string name="status">Status</string>
+    <string name="opened">Opened</string>
+    <string name="opening">Opening…</string>
+    <string name="closed">Closed</string>
+    <string name="closing">Closing…</string>
 </resources>
