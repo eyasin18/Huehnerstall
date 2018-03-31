@@ -54,6 +54,8 @@
                 android:orientation="horizontal">
 
                 <RelativeLayout
+                    android:id="@+id/opening_time"
+                    android:background="?android:attr/selectableItemBackground"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1">
@@ -86,6 +88,8 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/closing_time"
+                    android:background="?android:attr/selectableItemBackground"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1">

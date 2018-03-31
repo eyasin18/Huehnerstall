@@ -9,4 +9,6 @@
     <string name="opening">Opening…</string>
     <string name="closed">Closed</string>
     <string name="closing">Closing…</string>
+    <string name="set_opening_time">Set opening time</string>
+    <string name="set_closing_time">Set closing time</string>
 </resources>

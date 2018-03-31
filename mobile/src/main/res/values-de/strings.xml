@@ -10,4 +10,6 @@
     <string name="closing">Schließt…</string>
     <string name="error">Fehler</string>
     <string name="status">Status</string>
+    <string name="set_opening_time">Öffnungszeit festlegen</string>
+    <string name="set_closing_time">Schließzeit festlegen</string>
 </resources>

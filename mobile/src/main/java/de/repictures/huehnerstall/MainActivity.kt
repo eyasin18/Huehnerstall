@@ -3,41 +3,54 @@ package de.repictures.huehnerstall
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
+import android.widget.RelativeLayout
 import android.widget.TextView
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import de.repictures.huehnerstall.pojo.Time
 import java.text.DecimalFormat
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private var opened = 0
+    private var openingTime : Time = Time(0, 0)
+    private var closingTime : Time = Time(0, 0)
+    private lateinit var openingTimeText : TextView
+    private lateinit var closingTimeText: TextView
+    private lateinit var openingTimeRef: DatabaseReference
+    private lateinit var closingTimeRef: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val openingLayout: RelativeLayout = findViewById(R.id.opening_time)
+        openingLayout.setOnClickListener(this)
+
+        val closingLayout: RelativeLayout = findViewById(R.id.closing_time)
+        closingLayout.setOnClickListener(this)
+
         val statusText = findViewById<TextView>(R.id.status_text)
 
-        val openingTimeText = findViewById<TextView>(R.id.opening_time_text)
+        openingTimeText = findViewById(R.id.opening_time_text)
         openingTimeText.text = getTimeStr(0, 0)
 
-        val closingTimeText = findViewById<TextView>(R.id.closing_time_text)
+        closingTimeText = findViewById(R.id.closing_time_text)
         closingTimeText.text = getTimeStr(0, 0)
 
         // Write a message to the database
         val database = FirebaseDatabase.getInstance()
-        val openingTimeRef = database.getReference("opening_time")
-        val closingTimeRef = database.getReference("closing_time")
+        openingTimeRef = database.getReference("opening_time")
+        closingTimeRef = database.getReference("closing_time")
         val openRef = database.getReference("open")
 
         openingTimeRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val time = dataSnapshot.getValue(Time::class.java)
-                openingTimeText.text = getTimeStr(time!!.hour, time.minutes)
+                if (dataSnapshot.value != null) {
+                    openingTime = dataSnapshot.getValue(Time::class.java)!!
+                    openingTimeText.text = getTimeStr(openingTime.hour, openingTime.minutes)
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -47,8 +60,10 @@ class MainActivity : AppCompatActivity() {
 
         closingTimeRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val time = dataSnapshot.getValue(Time::class.java)
-                closingTimeText.text = getTimeStr(time!!.hour, time.minutes)
+                if (dataSnapshot.value != null) {
+                    closingTime = dataSnapshot.getValue(Time::class.java)!!
+                    closingTimeText.text = getTimeStr(closingTime.hour, closingTime.minutes)
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -58,44 +73,40 @@ class MainActivity : AppCompatActivity() {
 
         openRef.addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                opened = dataSnapshot.getValue(Int::class.java)!!
-                statusText.text = getStatusStr(opened)
+                if (dataSnapshot.value != null) {
+                    opened = dataSnapshot.getValue(Int::class.java)!!
+                    statusText.text = getStatusStr(opened)
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
 
             }
         })
+    }
 
-        openingTimeText.setOnClickListener({
-            val mCurrentTime = Calendar.getInstance()
-            val hour = mCurrentTime.get(Calendar.HOUR_OF_DAY)
-            val minute = mCurrentTime.get(Calendar.MINUTE)
-            val mTimePicker: TimePickerDialog
-            mTimePicker = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { _, selectedHour, selectedMinute ->
-                run {
+    override fun onClick(view: View) {
+        when(view.id){
+            R.id.closing_time -> setTime(false)
+            R.id.opening_time -> setTime(true)
+        }
+    }
+
+    private fun setTime(openingTime: Boolean) {
+        val mTimePicker: TimePickerDialog
+        mTimePicker = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { _, selectedHour, selectedMinute ->
+            run {
+                if (!openingTime) {
+                    closingTimeText.text = getTimeStr(selectedHour, selectedMinute)
+                    closingTimeRef.setValue(Time(selectedHour, selectedMinute))
+                } else {
                     openingTimeText.text = getTimeStr(selectedHour, selectedMinute)
                     openingTimeRef.setValue(Time(selectedHour, selectedMinute))
                 }
-            }, hour, minute, true)//Yes 24 hour time
-            mTimePicker.setTitle("Select Time")
-            mTimePicker.show()
-        })
-
-        closingTimeText.setOnClickListener({
-            val mCurrentTime = Calendar.getInstance()
-            val hour = mCurrentTime.get(Calendar.HOUR_OF_DAY)
-            val minute = mCurrentTime.get(Calendar.MINUTE)
-            val mTimePicker: TimePickerDialog
-            mTimePicker = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { _, selectedHour, selectedMinute ->
-                run {
-                    closingTimeText.text = getTimeStr(selectedHour, selectedMinute)
-                    closingTimeRef.setValue(Time(selectedHour, selectedMinute))
-                }
-            }, hour, minute, true)//Yes 24 hour time
-            mTimePicker.setTitle("Select Time")
-            mTimePicker.show()
-        })
+            }
+        }, if (openingTime) this.openingTime.hour else this.closingTime.hour, if (openingTime) this.openingTime.minutes else this.closingTime.minutes, true)
+        mTimePicker.setTitle(if (openingTime) resources.getString(R.string.set_opening_time) else resources.getString(R.string.set_closing_time))
+        mTimePicker.show()
     }
 
     private fun getTimeStr(hours: Int, minutes: Int): String {
