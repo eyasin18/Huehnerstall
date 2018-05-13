@@ -71,6 +71,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         })
 
+        statusText.text = getStatusStr(5)
+        openRef.setValue(5)
+        opened = 5
         openRef.addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.value != null) {
@@ -83,12 +86,26 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             }
         })
+
+        java.util.Timer().schedule(
+                object : java.util.TimerTask() {
+                    override fun run() {
+                        if (opened == 5){
+                            opened = 6
+                            openRef.setValue(6)
+                            statusText.text = getStatusStr(6)
+                        }
+                    }
+                },
+                15000
+        )
     }
 
     override fun onClick(view: View) {
         when(view.id){
             R.id.closing_time -> setTime(false)
             R.id.opening_time -> setTime(true)
+
         }
     }
 
@@ -120,6 +137,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             2 -> resources.getString(R.string.opening)
             3 -> resources.getString(R.string.closed)
             4 -> resources.getString(R.string.closing)
+            5 -> resources.getString(R.string.status_requested)
+            6 -> resources.getString(R.string.offline)
             else -> resources.getString(R.string.error)
         }
     }

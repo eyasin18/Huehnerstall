@@ -51,6 +51,10 @@ class MainActivity : Activity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.value != null) {
                     status = dataSnapshot.getValue(Int::class.java)!!
+                    if (status == 5){
+                        openRef.setValue(1)
+                        status = 1
+                    }
                 }
             }
 
