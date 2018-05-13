@@ -12,6 +12,8 @@
     <string name="status">Status</string>
     <string name="set_opening_time">Öffnungszeit festlegen</string>
     <string name="set_closing_time">Schließzeit festlegen</string>
+    <string name="open_manually">Manuell öffnen</string>
     <string name="status_requested">Status wird abgefragt…</string>
     <string name="offline">Offline</string>
+    <string name="close_manually">Manuell schließen</string>
 </resources>

@@ -2,8 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.repictures.huehnerstall">
 
+    <uses-permission android:name="com.google.android.things.permission.USE_PERIPHERAL_IO" />
+
     <application>
         <uses-library android:name="com.google.android.things" />
+
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -16,6 +19,9 @@
 
                 <category android:name="android.intent.category.IOT_LAUNCHER" />
                 <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="de.repictures.huehnerstall.MESSAGE" />
             </intent-filter>
         </activity>
     </application>

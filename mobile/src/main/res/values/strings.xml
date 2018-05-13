@@ -11,6 +11,8 @@
     <string name="closing">Closing…</string>
     <string name="set_opening_time">Set opening time</string>
     <string name="set_closing_time">Set closing time</string>
+    <string name="open_manually">Open manually</string>
     <string name="status_requested">Status requested…</string>
     <string name="offline">Offline</string>
+    <string name="close_manually">Close manually</string>
 </resources>

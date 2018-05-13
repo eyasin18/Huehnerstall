@@ -3,13 +3,16 @@ package de.repictures.huehnerstall
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.google.firebase.database.*
 import de.repictures.huehnerstall.pojo.Time
 import java.text.DecimalFormat
-import java.util.*
+
+private val TAG = MainActivity::class.java.simpleName
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -20,6 +23,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var closingTimeText: TextView
     private lateinit var openingTimeRef: DatabaseReference
     private lateinit var closingTimeRef: DatabaseReference
+    private lateinit var openRef : DatabaseReference
+    private lateinit var openFlapButton : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +38,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         val statusText = findViewById<TextView>(R.id.status_text)
 
+        openFlapButton = findViewById(R.id.open_flap_button)
+        openFlapButton.setOnClickListener(this)
+
         openingTimeText = findViewById(R.id.opening_time_text)
         openingTimeText.text = getTimeStr(0, 0)
 
@@ -43,7 +51,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val database = FirebaseDatabase.getInstance()
         openingTimeRef = database.getReference("opening_time")
         closingTimeRef = database.getReference("closing_time")
-        val openRef = database.getReference("open")
+        openRef = database.getReference("open")
 
         openingTimeRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -76,14 +84,26 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         opened = 5
         openRef.addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if (dataSnapshot.value != null) {
+                if (dataSnapshot.getValue(Int::class.java) != 0) {
                     opened = dataSnapshot.getValue(Int::class.java)!!
                     statusText.text = getStatusStr(opened)
+                    Log.d(TAG, "Status = $opened")
+                    when (opened) {
+                        1 -> {
+                            openFlapButton.isEnabled = true
+                            openFlapButton.text = resources.getString(R.string.close_manually)
+                        }
+                        3 -> {
+                            openFlapButton.isEnabled = true
+                            openFlapButton.text = resources.getString(R.string.open_manually)
+                        }
+                        else -> openFlapButton.isEnabled = false
+                    }
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-
+                Log.w(TAG, error.toString())
             }
         })
 
@@ -106,6 +126,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.closing_time -> setTime(false)
             R.id.opening_time -> setTime(true)
 
+            R.id.open_flap_button -> sendFlapMessage()
+        }
+    }
+
+    private fun sendFlapMessage() {
+        if(opened == 1){
+            openRef.setValue(4)
+        } else if (opened == 3){
+            openRef.setValue(2)
         }
     }
 
