@@ -89,7 +89,16 @@ class MainActivity : Activity() {
         stepPin.setDirection(Gpio.DIRECTION_OUT_INITIALLY_LOW)
 
         directionPin.value = true
-        stepPin.value = true
+        for(i in 1..99999){
+            try {
+                Log.d(TAG, i.toString())
+                stepPin.value = true
+                Thread.sleep(1)
+                stepPin.value = false
+                Thread.sleep(1)
+            } catch (e: Exception) {
+            }
+        }
     }
 
     override fun onDestroy() {
