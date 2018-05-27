@@ -1,6 +1,7 @@
 package de.repictures.huehnerstall
 
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -10,6 +11,8 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.google.firebase.database.*
 import de.repictures.huehnerstall.pojo.Time
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_camera.*
 import java.text.DecimalFormat
 
 private val TAG = MainActivity::class.java.simpleName
@@ -40,6 +43,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         openFlapButton = findViewById(R.id.open_flap_button)
         openFlapButton.setOnClickListener(this)
+
+        openCameraButton.setOnClickListener(this)
 
         openingTimeText = findViewById(R.id.opening_time_text)
         openingTimeText.text = getTimeStr(0, 0)
@@ -79,10 +84,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         })
 
-        statusText.text = getStatusStr(5)
-        openRef.setValue(5)
-        opened = 5
-        openRef.addListenerForSingleValueEvent(object : ValueEventListener{
+        openRef.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.getValue(Int::class.java) != 0) {
                     opened = dataSnapshot.getValue(Int::class.java)!!
@@ -106,6 +108,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 Log.w(TAG, error.toString())
             }
         })
+        statusText.text = getStatusStr(5)
+        openRef.setValue(5)
+        opened = 5
 
         java.util.Timer().schedule(
                 object : java.util.TimerTask() {
@@ -125,7 +130,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         when(view.id){
             R.id.closing_time -> setTime(false)
             R.id.opening_time -> setTime(true)
-
+            R.id.openCameraButton -> startActivity(Intent(this, CameraActivity::class.java))
             R.id.open_flap_button -> sendFlapMessage()
         }
     }

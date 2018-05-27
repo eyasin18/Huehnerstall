@@ -4,135 +4,163 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="de.repictures.huehnerstall.MainActivity">
-
-    <android.support.v7.widget.CardView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp" >
+        android:layout_height="wrap_content">
 
-        <RelativeLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:id="@+id/gate_card">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/TextAppearance.AppCompat.Title"
-                android:text="@string/chicken_flap"
-                android:padding="16dp"
-                android:id="@+id/flap_title"/>
-
-            <TextView
-                android:id="@+id/status_label"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="28dp"
-                android:paddingRight="28dp"
-                android:text="@string/status"
-                android:layout_below="@+id/flap_title"
-                android:textSize="12sp"/>
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/status_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="28dp"
-                android:paddingRight="28dp"
-                android:paddingTop="6dp"
-                android:layout_below="@+id/status_label"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:text="@string/error"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:textSize="16sp"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/status_text"
-                android:id="@+id/times_layout"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:id="@+id/opening_time"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:layout_width="0dp"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:text="@string/chicken_flap"
+                    android:padding="16dp"
+                    android:id="@+id/flap_title"/>
 
-                    <TextView
-                        android:id="@+id/opening_time_label"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:paddingLeft="28dp"
-                        android:paddingRight="28dp"
-                        android:text="@string/opening_time"
-                        android:textSize="12sp"
-                        android:gravity="bottom"/>
-
-                    <TextView
-                        android:id="@+id/opening_time_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:paddingLeft="28dp"
-                        android:paddingRight="28dp"
-                        android:paddingTop="6dp"
-                        android:layout_below="@+id/opening_time_label"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:text="@string/error"
-                        android:textStyle="bold"
-                        android:textColor="#000"
-                        android:textSize="16sp"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/closing_time"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/status_label"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:paddingLeft="28dp"
+                    android:paddingRight="28dp"
+                    android:text="@string/status"
+                    android:layout_below="@+id/flap_title"
+                    android:textSize="12sp"/>
 
-                    <TextView
-                        android:id="@+id/closing_time_label"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:paddingLeft="28dp"
-                        android:paddingRight="28dp"
-                        android:text="@string/closing_time"
-                        android:textSize="12sp"
-                        android:gravity="bottom"/>
+                <TextView
+                    android:id="@+id/status_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="28dp"
+                    android:paddingRight="28dp"
+                    android:paddingTop="6dp"
+                    android:layout_below="@+id/status_label"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:text="@string/error"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:textSize="16sp"/>
 
-                    <TextView
-                        android:id="@+id/closing_time_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:paddingLeft="28dp"
-                        android:paddingRight="28dp"
-                        android:paddingTop="6dp"
-                        android:layout_below="@+id/closing_time_label"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:text="@string/error"
-                        android:textStyle="bold"
-                        android:textColor="#000"
-                        android:textSize="16sp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/status_text"
+                    android:id="@+id/times_layout"
+                    android:orientation="horizontal">
 
-                </RelativeLayout>
-            </LinearLayout>
+                    <RelativeLayout
+                        android:id="@+id/opening_time"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/times_layout"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                android:layout_centerHorizontal="true"
-                android:text="@string/open_manually"
-                android:id="@+id/open_flap_button"/>
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
+                        <TextView
+                            android:id="@+id/opening_time_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:paddingLeft="28dp"
+                            android:paddingRight="28dp"
+                            android:text="@string/opening_time"
+                            android:textSize="12sp"
+                            android:gravity="bottom"/>
+
+                        <TextView
+                            android:id="@+id/opening_time_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:paddingLeft="28dp"
+                            android:paddingRight="28dp"
+                            android:paddingTop="6dp"
+                            android:layout_below="@+id/opening_time_label"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:text="@string/error"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:textSize="16sp"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/closing_time"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/closing_time_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:paddingLeft="28dp"
+                            android:paddingRight="28dp"
+                            android:text="@string/closing_time"
+                            android:textSize="12sp"
+                            android:gravity="bottom"/>
+
+                        <TextView
+                            android:id="@+id/closing_time_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:paddingLeft="28dp"
+                            android:paddingRight="28dp"
+                            android:paddingTop="6dp"
+                            android:layout_below="@+id/closing_time_label"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:text="@string/error"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:textSize="16sp"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/times_layout"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/open_manually"
+                    android:id="@+id/open_flap_button"/>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_below="@+id/gate_card">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/title_activity_camera"
+                    android:id="@+id/openCameraButton" />
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
 </ScrollView>

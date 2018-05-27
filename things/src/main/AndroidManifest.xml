@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.repictures.huehnerstall">
 
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="com.google.android.things.permission.USE_PERIPHERAL_IO" />
 
     <application>

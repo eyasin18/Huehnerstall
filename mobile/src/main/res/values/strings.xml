@@ -15,4 +15,6 @@
     <string name="status_requested">Status requested…</string>
     <string name="offline">Offline</string>
     <string name="close_manually">Close manually</string>
+    <string name="title_activity_camera">Camera</string>
+    <string name="take_picture">Take Picture</string>
 </resources>
