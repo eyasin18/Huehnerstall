@@ -16,4 +16,14 @@
     <string name="status_requested">Status wird abgefragt…</string>
     <string name="offline">Offline</string>
     <string name="close_manually">Manuell schließen</string>
+    <string name="title_activity_camera">Kamera</string>
+    <string name="take_picture">Bild schießen</string>
+    <string name="food_system">Futteranlage</string>
+    <string name="feed_manually">Manuell füttern</string>
+    <string name="last_feed">Letzte Fütterung</string>
+    <string name="next_feed">Nächste Fütterung</string>
+    <string name="last_feed_successfull">Letzte Fütterung war erfolgreich</string>
+    <string name="feeding">Füttert...</string>
+    <string name="error_at_last_feed">Fehler bei der letzten Fütterung</string>
+    <string name="stop_feeding">Stop Feeding</string>
 </resources>

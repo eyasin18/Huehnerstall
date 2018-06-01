@@ -144,21 +144,163 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:layout_below="@+id/gate_card">
+            android:id="@+id/cameraCard"
+            android:layout_below="@+id/foodCard"
+            android:clickable="true"
+            android:focusable="true">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <Button
+                <TextView
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:text="@string/title_activity_camera"
+                    android:padding="16dp"
+                    android:id="@+id/camera_title"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="16dp"
                     android:layout_centerHorizontal="true"
                     android:text="@string/title_activity_camera"
-                    android:id="@+id/openCameraButton" />
+
+                    android:layout_below="@+id/camera_title"
+                    android:id="@+id/cameraPreviewImage" />
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:id="@+id/foodCard"
+            android:layout_below="@+id/gate_card">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:text="@string/food_system"
+                    android:padding="16dp"
+                    android:id="@+id/food_title"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/food_title"
+                    android:id="@+id/feedLayout"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/nextFeedLayout"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/feed_status_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="28dp"
+                            android:paddingRight="28dp"
+                            android:text="@string/status"
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:id="@+id/feedStatusText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="28dp"
+                            android:paddingRight="28dp"
+                            android:paddingTop="6dp"
+                            android:layout_below="@+id/feed_status_label"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:text="@string/error"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:textSize="16sp"/>
+
+                        <TextView
+                            android:id="@+id/nextFeedLabel"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:paddingLeft="28dp"
+                            android:paddingRight="28dp"
+                            android:text="@string/next_feed"
+                            android:layout_below="@+id/feedStatusText"
+                            android:textSize="12sp"
+                            android:gravity="bottom"/>
+
+                        <TextView
+                            android:id="@+id/nextFeedText"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:paddingLeft="28dp"
+                            android:paddingRight="28dp"
+                            android:paddingTop="6dp"
+                            android:layout_below="@+id/nextFeedLabel"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:text="@string/error"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:textSize="16sp"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/last_feed_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="28dp"
+                            android:paddingRight="28dp"
+                            android:text="@string/last_feed"
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:id="@+id/lastFeedText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="28dp"
+                            android:paddingRight="28dp"
+                            android:paddingTop="6dp"
+                            android:layout_below="@+id/last_feed_title"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:text="@string/error"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:textSize="16sp"/>
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/feed_manually"
+                            android:layout_below="@id/lastFeedText"
+                            android:layout_margin="16dp"
+                            android:id="@+id/feedButton"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
 
             </RelativeLayout>
         </android.support.v7.widget.CardView>

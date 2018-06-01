@@ -17,4 +17,12 @@
     <string name="close_manually">Close manually</string>
     <string name="title_activity_camera">Camera</string>
     <string name="take_picture">Take Picture</string>
+    <string name="food_system">Food System</string>
+    <string name="feed_manually">Feed Manually</string>
+    <string name="last_feed">Last feed</string>
+    <string name="next_feed">Next Feed</string>
+    <string name="last_feed_successfull">Last Feed Successfull</string>
+    <string name="feeding">Feeding...</string>
+    <string name="error_at_last_feed">Error at last feed</string>
+    <string name="stop_feeding">Stop Feeding</string>
 </resources>
