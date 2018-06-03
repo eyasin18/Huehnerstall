@@ -55,8 +55,6 @@ class MainActivity : Activity() {
     private lateinit var feedStepPin : Gpio
     private lateinit var openGateLever : Gpio
     private lateinit var closeGateLever : Gpio
-    private lateinit var openFeedLever : Gpio
-    private lateinit var closeFeedLever : Gpio
 
     private var closeRunnable: Runnable = Runnable {  }
     private var openRunnable: Runnable = Runnable {  }
@@ -68,12 +66,9 @@ class MainActivity : Activity() {
     private var gateIsCurrentlyWorking = false
     private var feedIsCurrentlyWorking = false
 
-    private var gatePosition = 0
     private var feedPosition = 0
     private var gateTask : gateAsyncTask? = null
     private var feedTask : feedAsyncTask? = null
-
-    private var stopFeeding = false
 
     private lateinit var storageDatabase : FirebaseStorage
 
@@ -196,18 +191,18 @@ class MainActivity : Activity() {
 
         })
 
-        gateDirectionPin = service.openGpio("BCM26")
+        gateDirectionPin = service.openGpio("BCM16")
         gateDirectionPin.setDirection(Gpio.DIRECTION_OUT_INITIALLY_LOW)
-        gateStepPin = service.openGpio("BCM20")
+        gateStepPin = service.openGpio("BCM19")
         gateStepPin.setDirection(Gpio.DIRECTION_OUT_INITIALLY_LOW)
-        gateSleepPin = service.openGpio("BCM12")
+        gateSleepPin = service.openGpio("BCM6")
         gateSleepPin.setDirection(Gpio.DIRECTION_OUT_INITIALLY_LOW)
 
-        feedDirectionPin = service.openGpio("BCM16")
+        feedDirectionPin = service.openGpio("BCM26")
         feedDirectionPin.setDirection(Gpio.DIRECTION_OUT_INITIALLY_LOW)
-        feedStepPin = service.openGpio("BCM19")
+        feedStepPin = service.openGpio("BCM20")
         feedStepPin.setDirection(Gpio.DIRECTION_OUT_INITIALLY_LOW)
-        feedSleepPin = service.openGpio("BCM6")
+        feedSleepPin = service.openGpio("BCM12")
         feedSleepPin.setDirection(Gpio.DIRECTION_OUT_INITIALLY_LOW)
 
         openGateLever = service.openGpio("BCM18")
@@ -332,7 +327,7 @@ class MainActivity : Activity() {
         feedIsCurrentlyWorking = true
         feedSleepPin.value = true
         feedDirectionPin.value = true
-        for(i in feedPosition..25){
+        for(i in feedPosition..100){
             Log.d(TAG, i.toString())
             feedStepPin.value = true
             Thread.sleep(1)
@@ -397,7 +392,7 @@ class MainActivity : Activity() {
 
         override fun doInBackground(vararg params: Int?): Boolean {
             gateDirectionPin.value = direction
-            for(i in 1..100){
+            for(i in 1..500){
                 Log.d(TAG, i.toString())
                 gateStepPin.value = true
                 Thread.sleep(0, 10)
