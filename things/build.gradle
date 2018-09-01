@@ -34,7 +34,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     compileOnly 'com.google.android.things:androidthings:1.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.google.android.things.contrib:driver-button:1.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.25.0'
 }
 
 
